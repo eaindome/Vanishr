@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+pydantic
+redis
+rq
+python-dotenv
+playwright
+aiosmtplib
+weasyprint

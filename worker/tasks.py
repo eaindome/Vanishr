@@ -2,8 +2,8 @@ import asyncio
 from playwright.async_api import async_playwright
 from aiosmtplib import SMTP
 from weasyprint import HTML
-from app.data.db import AsyncSessionLocal
-from app.data.models import RequestLog, Broker, User
+from app.data.db import AsyncSessionLocal               # type: ignore
+from app.data.models import RequestLog, Broker, User    # type: ignore
 
 # ---------------------------
 # Helper to get DB session
@@ -123,10 +123,6 @@ def process_request(request_id: int):
     """
     Decide which task to run based on broker opt_out_method
     """
-    import asyncio
-    from app.db import AsyncSessionLocal
-    from app.models import RequestLog, Broker
-
     async def main():
         async with AsyncSessionLocal() as session:
             req = await session.get(RequestLog, request_id)

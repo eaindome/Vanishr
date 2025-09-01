@@ -1,0 +1,6 @@
+redis
+playwright
+aiosmtplib
+weasyprint
+rq
+python-dotenv

@@ -39,3 +39,13 @@ services:
       - redis
       - backend
 
+  frontend:
+    build: ./client
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      - ./client:/App
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+

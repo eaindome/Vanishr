@@ -188,10 +188,7 @@ const props = withDefaults(defineProps<Props>(), {
   emptyMessage: ''
 })
 
-const emit = defineEmits<{
-  view: [row: any]
-  retry: [row: any]
-}>()
+
 
 const searchQuery = ref('')
 const statusFilter = ref('')

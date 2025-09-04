@@ -92,9 +92,7 @@ const props = withDefaults(defineProps<Props>(), {
   actionText: ''
 })
 
-const emit = defineEmits<{
-  action: []
-}>()
+/* Removed unused emit declaration */
 
 const progressPercentage = computed(() => {
   if (props.total === 0) return 0

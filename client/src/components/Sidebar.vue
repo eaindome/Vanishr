@@ -81,16 +81,16 @@ const navigationItems = [
   { name: 'Settings', path: '/settings', icon: CogIcon },
 ]
 
-// Mock user data - replace with actual user store
-const userName = 'John Doe'
-const userEmail = 'john@example.com'
-const userInitials = computed(() => {
-  return userName
-    .split(' ')
-    .map(name => name.charAt(0))
-    .join('')
-    .toUpperCase()
-})
+import { useUserStore } from '../store/user'
+
+const userStore = useUserStore()
+
+// Initialize mock user for development
+userStore.initializeMockUser()
+
+const userName = computed(() => userStore.getFullName())
+const userEmail = computed(() => userStore.getEmail())
+const userInitials = computed(() => userStore.getUserInitials())
 
 const isActive = (path: string) => {
   return route.path === path

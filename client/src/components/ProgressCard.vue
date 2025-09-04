@@ -25,7 +25,7 @@
       </div>
       <div class="w-full bg-[#2D2D2D] rounded-full h-2">
         <div 
-          class="bg-gradient-to-r from-[#06B6D4] to-[#14B8A6] h-2 rounded-full transition-all duration-500 ease-out"
+          class="h-2 rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-[#06B6D4] to-[#14B8A6]"
           :style="{ width: `${progressPercentage}%` }"
         ></div>
       </div>
@@ -92,6 +92,9 @@ const props = withDefaults(defineProps<Props>(), {
   actionText: ''
 })
 
+const emit = defineEmits<{
+  action: []
+}>()
 
 const progressPercentage = computed(() => {
   if (props.total === 0) return 0

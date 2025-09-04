@@ -188,7 +188,7 @@ const props = withDefaults(defineProps<Props>(), {
   emptyMessage: ''
 })
 
-defineEmits<{
+const emit = defineEmits<{
   view: [row: any]
   retry: [row: any]
 }>()
@@ -255,7 +255,7 @@ const getStatusClass = (status: string) => {
     completed: 'bg-[#22C55E] bg-opacity-10 text-[#22C55E] border border-[#22C55E] border-opacity-20',
     failed: 'bg-[#EF4444] bg-opacity-10 text-[#EF4444] border border-[#EF4444] border-opacity-20',
   }
-  return classes[status as keyof typeof classes] || 'bg-[#6B7280] bg-opacity-10 text-[#6B7280]'
+  return classes[status as keyof typeof classes] || 'bg-[#6B7280] bg-opacity-10 text-[#6B7280] border border-[#6B7280] border-opacity-20'
 }
 
 const getStatusDotClass = (status: string) => {

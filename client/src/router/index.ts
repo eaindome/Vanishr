@@ -1,41 +1,47 @@
-import { createRouter, createWebHistory } from "vue-router";
-import type { RouteRecordRaw } from "vue-router";
-import Dashboard from "../pages/Dashboard.vue";
-import Brokers from "../pages/Brokers.vue";
-import Requests from "../pages/Requests.vue";
-import Settings from "../pages/Settings.vue";
-import Login from "../pages/Login.vue";
-import { useUserStore } from "../store/user";
+import { createRouter, createWebHistory } from 'vue-router'
+import Dashboard from '../pages/Dashboard.vue'
 
-const routes: Array<RouteRecordRaw> = [
-  { path: "/login", name: "Login", component: Login },
+// Placeholder components for other routes
+const Login = { template: '<div class="min-h-screen bg-black-100 flex items-center justify-center"><div class="text-[#F9FAFB] text-xl">Login Page - Coming Soon</div></div>' }
+const DataBrokers = { template: '<div class="min-h-screen bg-black-100 flex items-center justify-center"><div class="text-[#F9FAFB] text-xl">Data Brokers Page - Coming Soon</div></div>' }
+const Requests = { template: '<div class="min-h-screen bg-black-100 flex items-center justify-center"><div class="text-[#F9FAFB] text-xl">Requests Page - Coming Soon</div></div>' }
+const Settings = { template: '<div class="min-h-screen bg-black-100 flex items-center justify-center"><div class="text-[#F9FAFB] text-xl">Settings Page - Coming Soon</div></div>' }
+
+const routes = [
   {
-    path: "/",
-    component: () => import("../layouts/MainLayout.vue"),
-    children: [
-      { path: "", name: "Dashboard", component: Dashboard },
-      { path: "brokers", name: "Brokers", component: Brokers },
-      { path: "requests", name: "Requests", component: Requests },
-      { path: "settings", name: "Settings", component: Settings },
-    ],
-    meta: { requiresAuth: true },
+    path: '/',
+    redirect: '/dashboard'
   },
-];
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  {
+    path: '/data-brokers',
+    name: 'DataBrokers',
+    component: DataBrokers
+  },
+  {
+    path: '/requests',
+    name: 'Requests',
+    component: Requests
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-});
+  routes
+})
 
-// Auth Guard
-router.beforeEach((to, _, next) => {
-  const userStore = useUserStore();
-
-  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
-    next({ name: "Login" });
-  } else {
-    next();
-  }
-});
-
-export default router;
+export default router

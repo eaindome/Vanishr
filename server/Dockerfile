@@ -41,8 +41,15 @@ RUN playwright install --with-deps
 # Copy app
 COPY . .
 
-# Expose FastAPI port
+# Expose FastAPI port (optional, for API)
 EXPOSE 8000
 
-# Start server
+#
+# To run the API server (default):
+#   docker run ... <image> uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+#
+# To run the worker:
+#   docker run ... <image> python worker/worker.py
+#
+# The entrypoint can be overridden in docker-compose or at runtime.
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
